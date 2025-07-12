@@ -50,7 +50,7 @@ python manage.py runserver 5011
 ```
 
 
-## Struktur Direktori
+## Struktural Direktori
 ```bash
 .
 └── Rebuild-Webserviced-Django/
