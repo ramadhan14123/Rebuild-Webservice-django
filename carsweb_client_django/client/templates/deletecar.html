@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Car</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <h1>Delete Car</h1>
+
+    <!-- Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'createcar' %}">Create Car</a></li>
+            <li><a href="{% url 'readcar' %}">Read Cars</a></li>
+            <li><a href="{% url 'updatecar' %}">Update Car</a></li>
+            <li><a href="{% url 'deletecar' %}">Delete Car</a></li>
+            <li><a href="{% url 'searchcar' %}">Search Car</a></li>
+        </ul>
+    </nav>
+
+    {% if rows %}
+    <table>
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Car Brand</th>
+                <th>Car Model</th>
+                <th>Car Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in rows %}
+            <tr>
+                <td>{{ car.carname }}</td>
+                <td>{{ car.carbrand }}</td>
+                <td>{{ car.carmodel }}</td>
+                <td>{{ car.carprice }}</td>
+                <td>
+                    <form method="POST" action="{% url 'deletecarsave' %}" class="inline-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="carId" value="{{ car.id }}">
+                        <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus mobil ini?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Tidak ada data mobil.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car List</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <h1>List of Cars</h1>
+
+    <!-- Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'createcar' %}">Create Car</a></li>
+            <li><a href="{% url 'readcar' %}">Read Cars</a></li>
+            <li><a href="{% url 'updatecar' %}">Update Car</a></li>
+            <li><a href="{% url 'deletecar' %}">Delete Car</a></li>
+            <li><a href="{% url 'searchcar' %}">Search Car</a></li>
+        </ul>
+    </nav>
+
+    <!-- Tabel mobil -->
+    <table>
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Car Brand</th>
+                <th>Car Model</th>
+                <th>Car Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if rows %}
+                {% for car in rows %}
+                <tr>
+                    <td>{{ car.carname }}</td>
+                    <td>{{ car.carbrand }}</td>
+                    <td>{{ car.carmodel }}</td>
+                    <td>{{ car.carprice }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No cars found.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

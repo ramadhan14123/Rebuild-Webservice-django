@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Web Service - {{ appType }}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <h1>Welcome to the Car Web Service</h1>
+    <p>This application allows you to manage cars.</p>
+    <nav>
+        <ul>
+            <li><a href="{% url 'createcar' %}">Create Car</a></li>
+            <li><a href="{% url 'readcar' %}">Read Cars</a></li>
+            <li><a href="{% url 'updatecar' %}">Update Car</a></li>
+            <li><a href="{% url 'deletecar' %}">Delete Car</a></li>
+            <li><a href="{% url 'searchcar' %}">Search Car</a></li>
+        </ul>
+    </nav>
+    
+</body>
+</html>

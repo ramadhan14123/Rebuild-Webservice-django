@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Car</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <h1>Search Car</h1>
+
+    <!-- Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="{% url 'createcar' %}">Create Car</a></li>
+            <li><a href="{% url 'readcar' %}">Read Cars</a></li>
+            <li><a href="{% url 'updatecar' %}">Update Car</a></li>
+            <li><a href="{% url 'deletecar' %}">Delete Car</a></li>
+            <li><a href="{% url 'searchcar' %}">Search Car</a></li>
+        </ul>
+    </nav>
+
+    <!-- Form pencarian -->
+    <form method="GET" action="{% url 'searchcar' %}">
+        <label for="carName">Car Name:</label>
+        <input type="text" id="carName" name="q" placeholder="Search by car name..." required>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Hasil pencarian -->
+    {% if rows %}
+        <h2>Search Results:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Car Name</th>
+                    <th>Car Brand</th>
+                    <th>Car Model</th>
+                    <th>Car Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in rows %}
+                <tr>
+                    <td>{{ car.carname }}</td>
+                    <td>{{ car.carbrand }}</td>
+                    <td>{{ car.carmodel }}</td>
+                    <td>{{ car.carprice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p style="text-align: center; margin-top: 20px;">No results found.</p>
+    {% endif %}
+</body>
+</html>
